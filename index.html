@@ -1,60 +1,49 @@
-<!DOCTYPE HTML>
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <link rel="stylesheet" href="CSS/style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link rel="" href="CSS/style.css">
+    <title>Document</title>
 </head>
 
 
-
 <body>
-    <script src="./JS/funciones.js"></script>
 
-    <main>
-        <div>
-            <label for="text">1. Cadena palíndrome</label>
-            <input id="text" autocomplete="off" onkeyup="palindrome()" />
-            <small id="answer1">
+    <div class="container">
+        <h1>AJAX</h1>
+        <div class="container">
+            <div class="container" id="contenido"></div>
+            <button type="button" id="btnCargar" class="btn-Cargar">Cargar</button>
         </div>
 
-        <div>
-            <label for="num">2. Número Mayor</label>
-            <input id="num1" autocomplete="off" onkeyup="numeroMayor()" />
-            <input id="num2" autocomplete="off" onkeyup="numeroMayor()" />
-            <small id="answer2">
-        </div>
+        <script type="text/javascript">
+            $('#btnCargar').click(function () {
+                var esperar = 2000;
+                $.ajax({
+                    url: "page.html",
+                    beforeSend: function () {
+                        $('#contenido').text('Cargando...'); //Indicador de estado
+                    },
 
-        <div>
-            <label for="vocales">3. Vocales que aparecen</label>
-            <input id="miFrase" autocomplete="off" onkeyup="vocalesEnFrase()" />
-            <small id="1answerA"></small>
-            <small id="1answerE"></small>
-            <small id="1answerI"></small>
-            <small id="1answerO"></small>
-            <small id="1answerU"></small>
+                    success: function (data) {
+                        setTimeout(function () {
+                            $('#contenido').html(data);
+                        }, esperar
+                        );
+                    }
+                });
+            });
 
+        </script>
 
-        </div>
-
-        <div>
-            <label for="vocales2">4. Conteo de vocales</label>
-            <input id="miFrase2" autocomplete="off" onkeyup="numVocales()" />
-            <small id="2answerA"></small> &nbsp &nbsp &nbsp &nbsp
-            <small id="2answerE"></small> &nbsp &nbsp &nbsp &nbsp
-            <small id="2answerI"></small> &nbsp &nbsp &nbsp &nbsp
-            <small id="2answerO"></small> &nbsp &nbsp &nbsp &nbsp
-            <small id="2answerU"></small>
-
-        </div>
-
-    </main>
+    </div>
 
 
 
 </body>
-
-
 
 </html>
